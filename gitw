@@ -1,0 +1,84 @@
+#include<iostream>
+#include<string>
+using namespace std;
+class seasonsbase {
+    virtual void change() = 0;
+
+};
+
+class seasons : seasonsbase {
+
+protected:
+    enum s {
+        winter,
+        spring,
+        summer,
+        fall
+    };
+    s name = winter;
+public:
+
+    void change() override {
+        switch (name) {
+        case winter:
+            name = spring;
+            cout << "winter" << endl;
+            break;
+        case spring:
+            name = summer;
+            cout << "spring" << endl;
+            break;
+        case summer:
+            name = fall;
+            cout << "summer" << endl;
+            break;
+        case fall:
+            name = winter;
+            cout << "fall" << endl;
+            break;
+        }
+        cout << endl;
+
+
+    };
+
+};
+class reverse_seasons :seasonsbase, seasons {
+public:
+    void change()override {
+        switch (name) {
+        case winter:
+            name = spring;
+            cout << "fall" << endl;
+            break;
+        case spring:
+            name = summer;
+            cout << "summer" << endl;
+            break;
+        case summer:
+            name = fall;
+            cout << "spring" << endl;
+            break;
+        case fall:
+            name = winter;
+            cout << "winter" << endl;
+            break;
+        }
+        cout << endl;
+    }
+};
+
+
+
+
+int main() {
+    seasons s;
+    reverse_seasons rs;
+    for (int p = 0; p < 4; p++) {
+        s.change();
+    }
+    for (int i = 0; i < 4; i++) {
+        rs.change();
+    }
+    system("pause");
+}
